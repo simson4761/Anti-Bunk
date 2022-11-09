@@ -1,0 +1,32 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="Typos">Anti-Bunk</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="google_maps_api_key">AIzaSyBg7srcHemVXj-HWu88RXpbfpRt8ref-aw</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="second_time">second time</string>
+    <string name="log_out">log_out</string>
+    <string name="sign_up">sign up</string>
+    <string name="old_user_click_to_sign_in">Old user?</string>
+    <string name="sign_in">sign in</string>
+    <string name="don_t_have_an_account_click_to_sign_in">don\'t have an account?</string>
+    <string name="type_here">Type Here…</string>
+    <string name="summit">Summit</string>
+    <string name="next"><![CDATA[Next ->]]></string>
+    <string name="password">Password</string>
+    <string name="e_mail">E-Mail</string>
+    <string name="register_no">Register No.</string>
+    <string name="name">Name</string>
+    <string name="roll_call">Roll Call</string>
+    <string name="about">About</string>
+    <string name="feedback">Feedback</string>
+    <string name="support">Support</string>
+</resources>
