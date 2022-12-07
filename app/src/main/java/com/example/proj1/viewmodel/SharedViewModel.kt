@@ -22,6 +22,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.proj1.DataStoreRepository
 import com.example.proj1.broadcastReceiver.GeofenceBroadCastReceiver
+import com.example.proj1.util.Constants
 import com.example.proj1.util.Permissions
 import com.google.android.gms.location.Geofence
 import com.google.android.gms.location.GeofencingRequest
@@ -139,11 +140,10 @@ class SharedViewModel @Inject constructor(application: Application,
         }
     }
 
-    fun updateAttendance(date: String,
-                         registerNumber: Int ,
+    fun updateAttendance(registerNumber: Int ,
                          imei : String , context: Context) {
-        Log.d("Date" , "sharedViewModel Date :$date")
-        val database = FirebaseDatabase.getInstance().getReference("Attendance").child(date)
+        Log.d("Date" , "sharedViewModel Date :${Constants.date}")
+        val database = FirebaseDatabase.getInstance().getReference("Attendance").child(Constants.date)
         database.child(imei).setValue(registerNumber)
         Toast.makeText(context , "Attendance updated" , Toast.LENGTH_SHORT).show()
 

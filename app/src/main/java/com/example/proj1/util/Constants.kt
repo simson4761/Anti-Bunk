@@ -15,6 +15,8 @@ object Constants {
     const val Late = "You are late!"
     const val noGPS : String = "Make sure the device GPS is enabled"
 
+    var date : String = " "
+
     const val invalidEmailException = "com.google.firebase.auth.FirebaseAuthInvalidCredentialsException: The email address is badly formatted."
     const val accountAlreadyExistsException = "com.google.firebase.auth.FirebaseAuthUserCollisionException: The email address is already in use by another account."
 

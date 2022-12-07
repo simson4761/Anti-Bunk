@@ -76,7 +76,7 @@ class UserInterface : Fragment() {
         val queue  = Volley.newRequestQueue(context)
 
         var dayOfWeek = "Sunday"
-        var date = "123"
+        var date: String
         var time = 1000
 
         val imei = Settings.Secure.getString(context!!.contentResolver , Settings.Secure.ANDROID_ID)
@@ -118,6 +118,8 @@ class UserInterface : Fragment() {
             date = jsonArray.getString("date").replace("/","|")
             time = jsonArray.getString("time").replace(":", "").toInt()
             Log.d("dateInstance" , "$date $time")
+            Constants.date = date
+
 
             },
             {
@@ -147,7 +149,7 @@ class UserInterface : Fragment() {
             }
 
         }.addOnFailureListener {
-            Log.d("Firebase", "failed to load account")
+            Log.d("Firebase", "failed to load account $it")
             Toast.makeText(context , it.toString(), Toast.LENGTH_SHORT).show()
         }
 
@@ -179,7 +181,7 @@ class UserInterface : Fragment() {
                         80.2213032 ,
                          requireContext())
                     Log.d("Geofence", "method added in aaa_frag. ")
-                    sharedViewModel.updateAttendance(date ,registerNumber, imei , requireContext())
+                    sharedViewModel.updateAttendance(registerNumber, imei , requireContext())
                 }
                 else if(!sharedViewModel.checkCurrentLocation(currentLatitude , currentLongitude)){
                     AlertDialog.Builder(context).setMessage("you are not inside college premise").show()

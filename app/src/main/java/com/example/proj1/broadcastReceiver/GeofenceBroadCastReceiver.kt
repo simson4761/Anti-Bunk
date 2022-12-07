@@ -18,7 +18,6 @@ import com.google.android.gms.location.GeofenceStatusCodes
 import com.google.android.gms.location.GeofencingEvent
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import java.text.SimpleDateFormat
 import java.util.*
 
 class GeofenceBroadCastReceiver : BroadcastReceiver() {
@@ -28,39 +27,20 @@ class GeofenceBroadCastReceiver : BroadcastReceiver() {
 
 
     private var dayOfWeek : String = ""
-    private var date : String = ""
+
     private var time : Int = 0
 
     override fun onReceive(context: Context, intent: Intent) {
 
         val imei = Settings.Secure.getString(context.contentResolver , Settings.Secure.ANDROID_ID)
 
-        //val url = "https://www.timeapi.io/api/Time/current/coordinate?latitude=22.5726&longitude=88.3639"
-        //val queue  = Volley.newRequestQueue(context)
 
-        /*val stringRequest = StringRequest(
-            Request.Method.GET, url, { response ->
-                val jsonArray = JSONObject(response)
-                dayOfWeek = jsonArray.getString("dayOfWeek")
-                date = jsonArray.getString("date").replace("/","|")
-                time = jsonArray.getString("time").replace(":", "").toInt()
-
-            },
-            {
-
-
-                Toast.makeText(context, "error(JSON request)", Toast.LENGTH_SHORT).show()
-
-            }
-        )*/
 
 
 
         time = Calendar.HOUR_OF_DAY
-        val time2 = Calendar.getInstance().time
-        val formatter = SimpleDateFormat("MM|dd|yyyy ")
-        date = formatter.format(time2)
-        Log.d("dateInstance" , date)
+
+
 
 
 
@@ -92,8 +72,8 @@ class GeofenceBroadCastReceiver : BroadcastReceiver() {
                     displayNotification(context , "you have exited" , time)
                     //TODO:alert respective class in-charge
                     meritReduction(firebaseAuth.uid.toString())
-                    removeAttendance(date,imei , context)
-                    Log.d("BroadCastReceiver Date" , date)
+                    removeAttendance(imei , context)
+                    Log.d("BroadCastReceiver Date" , Constants.date)
 
                     Toast.makeText(context , "You have exited the geofence", Toast.LENGTH_LONG).show()
                 }
@@ -174,14 +154,13 @@ class GeofenceBroadCastReceiver : BroadcastReceiver() {
     }
 
     private fun removeAttendance(
-        date: String,
         imei: String,
         context: Context
     ) {
         //TODO : create a room database and store date value from userInterface in that database
         //TODO : So that you never use local time only IST date & time
-        Log.d("date" , "broad cast :$date")
-        val database = FirebaseDatabase.getInstance().getReference("Attendance").child(" $date")
+        Log.d("date" , "broad cast :${Constants.date}")
+        val database = FirebaseDatabase.getInstance().getReference("Attendance").child(Constants.date)
         database.get().addOnSuccessListener {
             if (it.exists()){
                 var attendance = it.child(imei).value.toString()
